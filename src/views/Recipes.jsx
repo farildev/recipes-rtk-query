@@ -11,7 +11,7 @@ const Recipes = () => {
 
   if (isLoading) return <LoadingScreen />;
   if (error) return <ErrorPage />;
-  
+
   const pageVariants = {
     initial: { opacity: 0, x: "-100vw" },
     in: { opacity: 1, x: 0 },
@@ -34,7 +34,9 @@ const Recipes = () => {
     >
       <div className="siteContainer">
         <div className="flex items-center gap-2 mt-10">
-          <Link className="bg-orange-600 text-white rounded-full" to={'/'}><IoIosArrowRoundBack size={30}/></Link>
+          <Link className="bg-orange-600 text-white rounded-full" to={"/"}>
+            <IoIosArrowRoundBack size={30} />
+          </Link>
           <h1 className="text-2xl font-medium">Recipes</h1>
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-10 gap-5">
