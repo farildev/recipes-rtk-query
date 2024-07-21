@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetRecipesQuery } from "@/store/services/recipeApi";
+import { useGetRecipeByIdQuery } from "@/store/services/recipeApi";
 import { IoMdTime, IoIosArrowRoundBack } from "react-icons/io";
 import { GiMeal } from "react-icons/gi";
 import { GoTrophy } from "react-icons/go";
@@ -11,14 +11,11 @@ import ErrorPage from "@/components/ErrorPage";
 import LoadingScreen from "@/components/LoadingScreen";
 
 const RecipeDetail = () => {
-  const { data, isLoading, error } = useGetRecipesQuery();
   const { id } = useParams();
+  const { data: recipeDetail, isLoading, error } = useGetRecipeByIdQuery(id);
 
   if (isLoading) return <LoadingScreen />;
-  if (error) return <ErrorPage />;
-  const recipeDetail = data.recipes.find(
-    (recipe) => recipe.id === parseInt(id)
-  );
+  if (error || !recipeDetail) return <ErrorPage />;
 
   const pageVariants = {
     initial: { opacity: 0, x: "-100vw" },
@@ -31,6 +28,7 @@ const RecipeDetail = () => {
     ease: "anticipate",
     duration: 0.5,
   };
+
   return (
     <motion.section
       initial="initial"
