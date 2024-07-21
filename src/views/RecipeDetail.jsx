@@ -42,11 +42,11 @@ const RecipeDetail = () => {
     >
       <div className="siteContainer">
         <Link
-          className="flex items-center gap-1 bg-black w-fit text-white p-2 outline-none border-none rounded-full text-sm"
+          className="flex items-center gap-1 bg-black w-fit text-white py-3 px-5 outline-none border-none rounded-full text-sm"
           to={"/recipes"}
         >
           <IoIosArrowRoundBack size={20} />
-          Geri qayit
+          Go back
         </Link>
         <div className="flex justify-between md:flex-row flex-col gap-10 mt-10 pb-[50px]">
           <div className="md:w-[55%] w-full">
