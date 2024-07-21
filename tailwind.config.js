@@ -8,7 +8,11 @@ export default {
     fontFamily:{
       primary : 'Poppins'
     },
-    extend: {},
+    extend: {
+      backgroundImage : {
+        'meal' : "url('https://images8.alphacoders.com/405/405724.jpg')"
+      }
+    },
   },
   plugins: [],
 }

@@ -3,6 +3,9 @@ import RecipeCard from "@/components/RecipeCard";
 import LoadingScreen from "@/components/LoadingScreen";
 import ErrorPage from "@/components/ErrorPage";
 import { motion } from "framer-motion";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { Link } from "react-router-dom";
+
 const Recipes = () => {
   const { data, isLoading, error } = useGetRecipesQuery();
 
@@ -30,7 +33,10 @@ const Recipes = () => {
       className="pb-[50px]"
     >
       <div className="siteContainer">
-        <h1 className="text-2xl mt-5 font-medium">Reseptler</h1>
+        <div className="flex items-center gap-2 mt-10">
+          <Link className="bg-orange-600 text-white rounded-full" to={'/'}><IoIosArrowRoundBack size={30}/></Link>
+          <h1 className="text-2xl font-medium">Recipes</h1>
+        </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-10 gap-5">
           {data.recipes.map((recipe, index) => (
             <RecipeCard recipe={recipe} key={index} />

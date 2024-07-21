@@ -7,10 +7,15 @@ import { AiOutlineFire } from "react-icons/ai";
 import { LiaHashtagSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import ErrorPage from "@/components/ErrorPage";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const RecipeDetail = () => {
-  const { data } = useGetRecipesQuery();
+  const { data, isLoading, error } = useGetRecipesQuery();
   const { id } = useParams();
+
+  if (isLoading) return <LoadingScreen />;
+  if (error) return <ErrorPage />;
   const recipeDetail = data.recipes.find(
     (recipe) => recipe.id === parseInt(id)
   );
@@ -33,7 +38,7 @@ const RecipeDetail = () => {
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
-      className="py-[50px] h-screen"
+      className=" h-screen pt-[50px]"
     >
       <div className="siteContainer">
         <Link
@@ -43,7 +48,7 @@ const RecipeDetail = () => {
           <IoIosArrowRoundBack size={20} />
           Geri qayit
         </Link>
-        <div className="flex justify-between md:flex-row flex-col mt-10">
+        <div className="flex justify-between md:flex-row flex-col gap-10 mt-10 pb-[50px]">
           <div className="md:w-[55%] w-full">
             <div className="w-full max-h-[600px] border-[5px] border-gray-300 rounded-lg overflow-hidden">
               <img
@@ -52,7 +57,7 @@ const RecipeDetail = () => {
                 alt=""
               />
             </div>
-            <div className="flex items-center gap-5">
+            <div className="flex md:flex-row flex-col md:items-center md:gap-5">
               <div className="flex flex-col gap-1 mt-3">
                 <div className="flex items-center gap-2 text-gray-500 text-sm">
                   <span className="flex items-center gap-1 text-gray-400">
@@ -112,21 +117,21 @@ const RecipeDetail = () => {
           </div>
           <div className="flex flex-1 md:w-[50%] w-full md:px-10">
             <div className="flex flex-col gap-5">
-              <h1 className="text-3xl font-medium mb-7 bg-black text-white p-2 rounded-md">
+              <h1 className="md:text-3xl text-xl font-medium mb-7 bg-black text-white p-2 rounded-md">
                 {recipeDetail.name}
               </h1>
               <div className="flex flex-col gap-2">
-                <h1 className="text-2xl">Ingredients</h1>
+                <h1 className="md:text-2xl text-xl">Ingredients</h1>
                 <ul>
                   {recipeDetail.ingredients.map((ing, index) => (
-                    <li className="text-md text-gray-500" key={index}>
+                    <li className="text-sm text-gray-500" key={index}>
                       -{ing}
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="flex flex-col gap-2">
-                <h1 className="text-2xl">Instructions</h1>
+                <h1 className="md:text-2xl text-xl">Instructions</h1>
                 <ul>
                   {recipeDetail.instructions.map((ins, index) => (
                     <li key={index} className="text-sm text-gray-500">
